@@ -101,12 +101,59 @@ const sortProductPriceA = (arrOfObj) => {
   return arrOfObj
 };
 
-
 // sort products by price, descending order
-const sortProductPriceD = () => {};
+const sortProductPriceD = (arrOfObj) => {
+  let noSwap;
+  for (let i = arrOfObj.length; i > 0; i--){
+    noSwap = true
+    for (let j = 0; j < i - 1; j++){
+      const a = arrOfObj[j].price
+      const b = arrOfObj[j+1].price
+
+      if(a < b){
+        [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
+        noSwap = false
+      }
+    }
+    if(noSwap) break;
+  }
+  return arrOfObj
+
+};
 
 // sort products by price, then by name, ascending order
-const sortProducsPriceNameA = () => {};
+const sortProducsPriceNameA = (arrOfObj) => {
+  let noSwap;
+  for (let i = arrOfObj.length; i > 0; i--){
+    noSwap = true
+    for (let j = 0; j < i - 1; j++){
+      const a = arrOfObj[j].price
+      const b = arrOfObj[j+1].price
+
+      if(a > b){
+        [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
+        noSwap = false
+      }
+      else if(a === b){
+        let index = 0
+        let letterA 
+        let letterB 
+        while(letterA === letterB){
+          letterA = arrOfObj[j].name[index]
+          letterB = arrOfObj[j + 1].name[index]
+          index++
+        }
+        if(letterA.toLowerCase().charCodeAt(0) > letterB.toLowerCase().charCodeAt(0)){
+          [arrOfObj[j], arrOfObj[j + 1]] = [arrOfObj[j + 1], arrOfObj[j]]
+          noSwap = false
+        }
+      }
+    }
+    if(noSwap) break;
+  }
+  return arrOfObj
+};
+console.log(sortProducsPriceNameA(someProducts))
 
 // sort catArt by designed by
 const catArtSortDesginedByA = () => {};
