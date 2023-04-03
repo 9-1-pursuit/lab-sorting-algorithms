@@ -1,8 +1,5 @@
 const { catArt, someNums, someProducts, someWords } = require("./data/data.js");
 
-// Pluto Coin ♇♇ - the current market rate of Pluto Pluto Coin is $10 for one coin.
-
-
 // sort numbers in ASCENDING order
 const sortNumsA = (arr) => {
   let noSwap;
@@ -79,11 +76,10 @@ const sortProductNamesA = (arrOfObj) => {
     } while (swapped);
 
   return arrOfObj;
-  
 };
 
 // sort products by price, ASCENDING order
-const sortProductPriceA = (arrOfObj) => {
+const sortProductPriceA = (arrOfObj, val = "asc") => {
   let noSwap;
   for (let i = arrOfObj.length; i > 0; i--){
     noSwap = true
@@ -91,9 +87,17 @@ const sortProductPriceA = (arrOfObj) => {
       const a = arrOfObj[j].price
       const b = arrOfObj[j+1].price
 
-      if(a > b){
-        [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
-        noSwap = false
+      if(val === "asc"){
+        if(a > b){
+          [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
+          noSwap = false
+        }
+      } 
+      if( val === "desc"){
+        if(a < b){
+          [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
+          noSwap = false
+        }
       }
     }
     if(noSwap) break;
@@ -103,22 +107,7 @@ const sortProductPriceA = (arrOfObj) => {
 
 // sort products by price, DESCENDING order
 const sortProductPriceD = (arrOfObj) => {
-  let noSwap;
-  for (let i = arrOfObj.length; i > 0; i--){
-    noSwap = true
-    for (let j = 0; j < i - 1; j++){
-      const a = arrOfObj[j].price
-      const b = arrOfObj[j+1].price
-
-      if(a < b){
-        [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
-        noSwap = false
-      }
-    }
-    if(noSwap) break;
-  }
-  return arrOfObj
-
+  return sortProductPriceA(arrOfObj, "desc")
 };
 
 // sort products by price, then by name, ASCENDING order
@@ -184,8 +173,33 @@ const catArtSortDesginedByA = (arrOfObj) => {
 // console.log("".charCodeAt(0))
 // console.log(catArtSortDesginedByA(catArt))
 
-// sort catArt by price
-const catArtSortByPriceA = () => {};
+// sort catArt by price ASCENDING
+// The cat art has prices listed in dollars or the latest greatest crypto currency called Pluto Pluto Coin ♇♇ - the current market rate of Pluto Pluto Coin is $10 for one coin.
+const catArtSortByPriceA = (arrOfObj) => {
+  let noSwap
+  for (let i = arrOfObj.length; i > 0; i--){
+    noSwap = true
+    for(let j = 0; j< i - 1; j++){
+      let a = arrOfObj[j].price
+      let b = arrOfObj[j + 1].price
+      if(isNaN(+a) || isNaN(+b)){
+        if(isNaN(+a)){
+          a = +a.match(/[0-9]/)[0] * 10
+        }
+        if(isNaN(+b)){
+          b = +b.match(/[0-9]/)[0] * 10
+        }
+      }
+      if(+a > +b){
+        [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
+        noSwap = false
+      }
+    }
+    if(noSwap) break
+  }
+  return arrOfObj
+};
+// console.log(catArtSortByPriceA(catArt))
 
 // Create your own sort function
 // it should sort in ascending order
