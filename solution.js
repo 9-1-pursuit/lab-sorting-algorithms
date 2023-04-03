@@ -2,6 +2,7 @@ const { catArt, someNums, someProducts, someWords } = require("./data/data.js");
 
 // Pluto Coin ♇♇ - the current market rate of Pluto Pluto Coin is $10 for one coin.
 
+
 // sort numbers in ascending order
 const sortNumsA = (arr) => {
   let noSwap;
@@ -57,7 +58,20 @@ const sortWordsD = (arr) => {
 
 
 // sort products by name, ascending order case insensitive
-const sortProductNamesA = () => {};
+const sortProductNamesA = (arrOfObj) => {
+  let noSwap;
+  for (let i = arrOfObj.length; i > 0; i--) {
+    noSwap = true;
+    for (let j = 0; j < i - 1; j++) {
+      if (arrOfObj[j].name.toLowerCase().charCodeAt(0) > arrOfObj[j+1].name.toLowerCase().charCodeAt(0)) {
+        [arrOfObj[j], arrOfObj[j + 1]] = [arrOfObj[j + 1], arrOfObj[j]]
+        noSwap = false;
+      }
+    }
+    if (noSwap) break;
+  }
+  return arrOfObj;
+};
 
 // sort products by price, ascending order
 const sortProductPriceA = () => {};
