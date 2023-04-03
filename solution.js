@@ -220,13 +220,13 @@ const [left, right] = arr.reduce((acc, el, index) => {
 if(index > 0){
     if(isNaN(el)){
         if(el[0] === middle[0]){
-            let index = 0
+            let i = 0
             let letterA 
             let letterB 
             while(letterA === letterB){
-              letterA = el[index]
-              letterB = middle[index]
-              index++
+              letterA = el[i]
+              letterB = middle[i]
+              i++
             }
             if(letterA.toLowerCase().charCodeAt(0) > letterB.toLowerCase().charCodeAt(0)){
                 el = 1

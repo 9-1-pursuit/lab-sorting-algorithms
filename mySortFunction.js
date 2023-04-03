@@ -51,13 +51,13 @@ function mySort(arr, val = "asc") {
         // differentiate b/w numbers and strings
         if(isNaN(el)){
             if(el[0] === middle[0]){
-                let index = 0
+                let i= 0
                 let letterA 
                 let letterB 
                 while(letterA === letterB){
-                  letterA = el[index]
-                  letterB = middle[index]
-                  index++
+                  letterA = el[i]
+                  letterB = middle[i]
+                  i++
                 }
                 if(letterA.toLowerCase().charCodeAt(0) > letterB.toLowerCase().charCodeAt(0)){
                     el = 1
