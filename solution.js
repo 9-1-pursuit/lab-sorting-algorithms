@@ -209,7 +209,42 @@ const catArtSortByPriceA = (arrOfObj) => {
 // or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = () => {};
+
+// Using Quick Sort Method w/ bonus val = "asc" || "desc"
+const mySortFunction = (arr, val = "asc") => {
+  if(arr.length <= 1){
+    return arr
+}
+let middle = arr[0]
+const [left, right] = arr.reduce((acc, el, index) => {
+if(index > 0){
+    if(isNaN(el)){
+        if(el[0] === middle[0]){
+            let index = 0
+            let letterA 
+            let letterB 
+            while(letterA === letterB){
+              letterA = el[index]
+              letterB = middle[index]
+              index++
+            }
+            if(letterA.toLowerCase().charCodeAt(0) > letterB.toLowerCase().charCodeAt(0)){
+                el = 1
+                middle = 0
+            }
+        }
+       
+    }
+    const accIndex = el > middle ? 1 : 0
+    acc[accIndex].push(el)
+}
+return acc
+},[[],[]])
+
+return val === "asc" ?
+ [...mySortFunction(left), middle, ...mySortFunction(right)] : 
+ [...mySortFunction(left), middle, ...mySortFunction(right)].reverse()
+};
 
 module.exports = {
   sortNumsA,

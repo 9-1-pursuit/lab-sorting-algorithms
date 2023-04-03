@@ -38,7 +38,8 @@ const someWords = [
     "dog",
   ];
 
-function mySort(arr) {
+//    USING QUICK SORT METHOD with bonus (val == "asc" or "desc")
+function mySort(arr, val = "asc") {
     if(arr.length <= 1){
         return arr
     }
@@ -71,7 +72,7 @@ function mySort(arr) {
     return acc
    },[[],[]])
 //    console.log([...left, ...right])
-   return [...mySort(left), middle, ...mySort(right)]
+   return val === "asc" ? [...mySort(left), middle, ...mySort(right)] : [...mySort(left), middle, ...mySort(right)].reverse()
 //    const leftSort = mySort(left)
 //    const rightSort = mySort(right)
 //    return leftSort.concat(rightSort)
@@ -79,4 +80,4 @@ function mySort(arr) {
 //    console.log(mySort(right))
 }
 console.log("T".charCodeAt(0), "t".charCodeAt(0))
-console.log(mySort(array))
+console.log(mySort(someWords, "desc"))
