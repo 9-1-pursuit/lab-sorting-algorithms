@@ -30,7 +30,10 @@ const sortWordsA = (arr) => {
   for (let i = arr.length; i > 0; i--) {
     noSwap = true;
     for (let j = 0; j < i - 1; j++) {
-      if (arr[j].charCodeAt(0) > arr[j+1].charCodeAt(0)) {
+      const a = arr[j].charCodeAt(0)
+      const b = arr[j+1].charCodeAt(0)
+
+      if (a > b) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
         noSwap = false;
       }
@@ -46,7 +49,10 @@ const sortWordsD = (arr) => {
   for (let i = arr.length; i > 0; i--) {
     noSwap = true;
     for (let j = 0; j < i - 1; j++) {
-      if (arr[j].toLowerCase().charCodeAt(0) < arr[j+1].toLowerCase().charCodeAt(0)) {
+      const a = arr[j].toLowerCase().charCodeAt(0)
+      const b = arr[j+1].toLowerCase().charCodeAt(0)
+
+      if (a < b) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
         noSwap = false;
       }
@@ -59,22 +65,42 @@ const sortWordsD = (arr) => {
 
 // sort products by name, ascending order case insensitive
 const sortProductNamesA = (arrOfObj) => {
-  let noSwap;
-  for (let i = arrOfObj.length; i > 0; i--) {
-    noSwap = true;
-    for (let j = 0; j < i - 1; j++) {
-      if (arrOfObj[j].name.toLowerCase().charCodeAt(0) > arrOfObj[j+1].name.toLowerCase().charCodeAt(0)) {
-        [arrOfObj[j], arrOfObj[j + 1]] = [arrOfObj[j + 1], arrOfObj[j]]
-        noSwap = false;
+    do {
+      swapped = false;
+      for (let i = 0; i < arrOfObj.length-1; i++) {
+        const a = arrOfObj[i].name.toLowerCase().charCodeAt(0)
+        const b = arrOfObj[i+1].name.toLowerCase().charCodeAt(0)
+
+        if (a > b) {
+          [arrOfObj[i], arrOfObj[i + 1]] = [arrOfObj[i + 1], arrOfObj[i]];
+          swapped = true;
+        }
       }
-    }
-    if (noSwap) break;
-  }
+    } while (swapped);
+
   return arrOfObj;
+  
 };
 
 // sort products by price, ascending order
-const sortProductPriceA = () => {};
+const sortProductPriceA = (arrOfObj) => {
+  let noSwap;
+  for (let i = arrOfObj.length; i > 0; i--){
+    noSwap = true
+    for (let j = 0; j < i - 1; j++){
+      const a = arrOfObj[j].price
+      const b = arrOfObj[j+1].price
+
+      if(a > b){
+        [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
+        noSwap = false
+      }
+    }
+    if(noSwap) break;
+  }
+  return arrOfObj
+};
+
 
 // sort products by price, descending order
 const sortProductPriceD = () => {};
