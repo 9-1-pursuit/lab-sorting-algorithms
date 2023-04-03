@@ -3,7 +3,7 @@ const { catArt, someNums, someProducts, someWords } = require("./data/data.js");
 // Pluto Coin ♇♇ - the current market rate of Pluto Pluto Coin is $10 for one coin.
 
 
-// sort numbers in ascending order
+// sort numbers in ASCENDING order
 const sortNumsA = (arr) => {
   let noSwap;
   for (let i = arr.length; i > 0; i--) {
@@ -19,12 +19,12 @@ const sortNumsA = (arr) => {
   return arr;
 };
 
-// sort numbers in descending order
+// sort numbers in DESCENDING order
 const sortNumsD = (arr) => {
   return sortNumsA(arr).reverse()
 };
 
-// sort words in ascending order case sensitive
+// sort words in ASCENDING order CASE SENSITIVE
 const sortWordsA = (arr) => {
   let noSwap;
   for (let i = arr.length; i > 0; i--) {
@@ -43,7 +43,7 @@ const sortWordsA = (arr) => {
   return arr;
 };
 
-// sort words in descending order case insensitive
+// sort words in DESCENDING order CASE INSENSITIVE
 const sortWordsD = (arr) => {
   let noSwap;
   for (let i = arr.length; i > 0; i--) {
@@ -63,7 +63,7 @@ const sortWordsD = (arr) => {
 };
 
 
-// sort products by name, ascending order case insensitive
+// sort products by name, ASCENDING order CASE INSENSITIVE
 const sortProductNamesA = (arrOfObj) => {
     do {
       swapped = false;
@@ -82,7 +82,7 @@ const sortProductNamesA = (arrOfObj) => {
   
 };
 
-// sort products by price, ascending order
+// sort products by price, ASCENDING order
 const sortProductPriceA = (arrOfObj) => {
   let noSwap;
   for (let i = arrOfObj.length; i > 0; i--){
@@ -101,7 +101,7 @@ const sortProductPriceA = (arrOfObj) => {
   return arrOfObj
 };
 
-// sort products by price, descending order
+// sort products by price, DESCENDING order
 const sortProductPriceD = (arrOfObj) => {
   let noSwap;
   for (let i = arrOfObj.length; i > 0; i--){
@@ -121,7 +121,7 @@ const sortProductPriceD = (arrOfObj) => {
 
 };
 
-// sort products by price, then by name, ascending order
+// sort products by price, then by name, ASCENDING order
 const sortProducsPriceNameA = (arrOfObj) => {
   let noSwap;
   for (let i = arrOfObj.length; i > 0; i--){
@@ -153,10 +153,36 @@ const sortProducsPriceNameA = (arrOfObj) => {
   }
   return arrOfObj
 };
-console.log(sortProducsPriceNameA(someProducts))
 
-// sort catArt by designed by
-const catArtSortDesginedByA = () => {};
+// sort catArt by designed by ASCENDING
+const catArtSortDesginedByA = (arrOfObj) => {
+  let noSwap;
+  for (let i = arrOfObj.length; i > 0; i--){
+    noSwap = true
+    for (let j = 0; j < i - 1; j++){
+      let a = arrOfObj[j].designedBy.toLowerCase().charCodeAt(0)
+      let b = arrOfObj[j+1].designedBy.toLowerCase().charCodeAt(0)
+      if(isNaN(a) || isNaN(b)){
+        if(isNaN(a)){
+          a = 0
+          b = 1
+        }
+        if(isNaN(b)){
+          a = 1
+          b = 0
+        }
+      }
+      if(a > b){
+          [arrOfObj[j], arrOfObj[j+1]] = [arrOfObj[j+1], arrOfObj[j]]
+          noSwap = false
+        }
+    }
+    if(noSwap) break;
+  }
+  return arrOfObj
+};
+// console.log("".charCodeAt(0))
+// console.log(catArtSortDesginedByA(catArt))
 
 // sort catArt by price
 const catArtSortByPriceA = () => {};
