@@ -100,7 +100,45 @@ const catArtSortByPriceA = (arr) => {
 // or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = () => {};
+
+// code is based on Quick Sort
+const mySortFunction = (arr, ord = "asc") => {
+  if (arr.length < 2) {
+    return arr;
+  } else {
+    const left = [];
+    const right = [];
+    const refVal = arr.pop();
+    ord === "asc"
+      ? arr.forEach((e) => {
+          e < refVal ? left.push(e) : right.push(e);
+        })
+      : arr.forEach((e) => {
+          e > refVal ? left.push(e) : right.push(e);
+        });
+    return [
+      ...mySortFunction(left, ord),
+      refVal,
+      ...mySortFunction(right, ord),
+    ];
+  }
+};
+
+console.log(mySortFunction([2, 4, 3, 1, 5, 7, -1, -5, -3, 10, 12]));
+console.log(mySortFunction([2, 4, 3, 1, 5, 7, -1, -5, -3, 10, 12], "asc"));
+console.log(mySortFunction([2, 4, 3, 1, 5, 7, -1, -5, -3, 10, 12], "desc"));
+console.log(
+  mySortFunction(
+    ["array", "apple", "beer", "animal", "bee", "TEST", "Good"],
+    "asc"
+  )
+);
+console.log(
+  mySortFunction(
+    ["array", "apple", "beer", "animal", "bee", "TEST", "Good"],
+    "desc"
+  )
+);
 
 module.exports = {
   sortNumsA,
