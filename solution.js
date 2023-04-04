@@ -124,21 +124,6 @@ const mySortFunction = (arr, ord = "asc") => {
   }
 };
 
-console.log(mySortFunction([2, 4, 3, 1, 5, 7, -1, -5, -3, 10, 12]));
-console.log(mySortFunction([2, 4, 3, 1, 5, 7, -1, -5, -3, 10, 12], "asc"));
-console.log(mySortFunction([2, 4, 3, 1, 5, 7, -1, -5, -3, 10, 12], "desc"));
-console.log(
-  mySortFunction(
-    ["array", "apple", "beer", "animal", "bee", "TEST", "Good"],
-    "asc"
-  )
-);
-console.log(
-  mySortFunction(
-    ["array", "apple", "beer", "animal", "bee", "TEST", "Good"],
-    "desc"
-  )
-);
 
 module.exports = {
   sortNumsA,
