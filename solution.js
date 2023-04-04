@@ -53,22 +53,20 @@ const catArtSortDesginedByA = (catArt) => {
 
 // sort catArt by price
 const catArtSortByPriceA = (catArt) => {
-  // return catArt.sort((a, b) => {
-  //   //! check for pluto char but not changing the actual data
-  //   // may still need to use another method besides sort
-  //   // within a conditional, how can you do this. can make a temp conversion
-  //   // use those tmep variables to compare for sort
-  //   // Remove ♇♇ from prices and convert them to numbers
-  //   const priceA = Number(a.price.toString().replace(/♇♇/g, ""));
-  //   const priceB = Number(b.price.toString().replace(/♇♇/g, ""));
-
-  //   // Sort by price
-  //   return priceA - priceB;
-  // });
-  return catArt.slice().sort((a, b) => {
-    const priceA = Number(a.price.toString().replace(/♇♇/g, ""));
-    const priceB = Number(b.price.toString().replace(/♇♇/g, ""));
-    return priceA - priceB;
+  return catArt.sort((a, b) => {
+    let tempA;
+    let tempB;
+    if (typeof a.price === "string" && a.price.includes("♇♇")) {
+      tempA = a.price.slice(2) * 10;
+    } else {
+      tempA = +a.price;
+    }
+    if (typeof b.price === "string" && b.price.includes("♇♇")) {
+      tempB = b.price.slice(2) * 10;
+    } else {
+      tempB = +b.price;
+    }
+    return tempA - tempB;
   });
 };
 
