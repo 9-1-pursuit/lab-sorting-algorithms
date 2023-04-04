@@ -47,17 +47,21 @@ const catArtSortDesginedByA = (catArt) => {
 
 // sort catArt by price
 const catArtSortByPriceA = (catArt) => {
-  return [...catArt].sort((a, b) => {
-    return catArt.map((p) => {
-      if (typeof p.price === "string" && p.price.includes("♇♇")) {
-        //* conversion here
-        const artPrice = Number(p.price.slice(2));
-        return artPrice * 10;
-      } else {
-        return p.price;
-      }
-    });
-    return a - b;
+  return catArt.sort((a, b) => {
+    let tempA;
+    let tempB;
+    if (typeof a.price === "string" && a.price.includes("♇♇")) {
+      tempA = Number(a.price.slice(2)) * 10;
+    } else {
+      tempA = Number(a.price);
+    }
+    if (typeof b.price === "string" && b.price.includes("♇♇")) {
+      tempB = Number(b.price.slice(2)) * 10;
+    } else {
+      tempB = Number(b.price);
+    }
+
+    return tempA - tempB;
   });
 };
 
@@ -69,7 +73,21 @@ const catArtSortByPriceA = (catArt) => {
 // or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = () => {};
+const mySortFunction = (arr) => {
+  let noSwap;
+  for (let i = arr.length; i > 0; i--) {
+    console.log(arr[i]);
+    noSwap = true;
+    for (let j = 0; j < i - 1; j++) {
+      //   console.log("j", arr[j], "j+1", arr[j + 1]);
+      if (arr[j] > arr[j + 1]) {
+        [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+        noSwap = false;
+      }
+    }
+  }
+  return arr;
+};
 
 module.exports = {
   sortNumsA,
