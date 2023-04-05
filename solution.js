@@ -17,7 +17,6 @@ const sortWordsA = (someWords) => {
 
 // sort words in descending order case insensitive
 const sortWordsD = (someWords) => {
-
   return someWords.sort((a, b) => b.localeCompare(a))
 };
 
@@ -49,14 +48,42 @@ const catArtSortDesginedByA = (catArt) => {
 }
 
 // sort catArt by price
-const catArtSortByPriceA = (catArt) => {}
-//   let catArtPrice = catArt.map((p)=>{if(typeof(p.price) === "string" && p.price.includes(`♇♇`)){
-//   const artPrice = Number(p.price.slice(2))
-//   return artPrice * 10
-// } else {
-//   return p.price }})
-// });
+const catArtSortByPriceA = (catArt) => {
+  let priceA, priceB
+  return catArt.sort((a,b) =>{
+    if( typeof a.price === "string" && a.price.includes("♇♇")){
+      priceA = Number(a.price.slice(2)) * 10
+    } else {
+      priceA = Number(a.price)
+    }
+    if( typeof b.price === "string" && b.price.includes("♇♇")){
+      priceB = Number(b.price.slice(2)) * 10
+    } else {
+      priceB = Number(b.price)
+    }
+    return priceA - priceB
+  })
+}
 
+
+const mySortFunction = (arrData) => {
+  let swapThis;
+  for (let x = arrData.length; x > 0; x--) {
+   // console.log(arrData[x]);
+    swapThis = true;
+    for (let y = 0; y < x - 1; y++) {
+      //   console.log(arrData[y], arrData[y + 1]);
+      if (arrData[y] > arrData[y + 1]) {
+        [arrData[y + 1], arrData[y]] = [arrData[y], arrData[y + 1]];
+        swapThis = false;
+      }
+    }
+
+    if (swapThis) break;
+  }
+  return arrData;
+}
+//console.log(mySortFunction(someNums))
 // Create your own sort function
 // it should sort in ascending order
 // it should work for numbers or words (case sensitive)
@@ -65,7 +92,7 @@ const catArtSortByPriceA = (catArt) => {}
 // or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = () => {};
+
 
 module.exports = {
   sortNumsA,
