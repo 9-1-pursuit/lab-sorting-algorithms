@@ -78,9 +78,9 @@ const catArtSortByPriceA = (catArt) => {
 // Bonus add another argument that would allow the function to be used for ascending or descending order
 const mySortFunction = (someNums) => {
   let noSwap
-  for (let i = someNums.length; i > 0; i--) {
+  for (let i = someNums.length - 1; i > 0; i--) {
     noSwap = true
-    for (let j = 0; j < i - 1; j++) {
+    for (let j = 0; j < i; j++) {
       if (someNums[j] > someNums[j + 1]) {
         ;[someNums[j + 1], someNums[j]] = [someNums[j], someNums[j + 1]]
         noSwap = false
