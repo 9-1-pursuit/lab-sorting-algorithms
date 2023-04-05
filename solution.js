@@ -65,13 +65,16 @@ const catArtSortByPriceA = (catArt) => {
   })
 }
 
+//const someNums = [7, 10, 9, 4, 0, 6, 1, 8, 3, 2, 5];
 
 const mySortFunction = (arrData) => {
   let swapThis;
-  for (let x = arrData.length; x > 0; x--) {
+  //outer loop is descending - x = index, starts at last index
+  for (let x = arrData.length - 1; x > 0; x--) {
    // console.log(arrData[x]);
     swapThis = true;
-    for (let y = 0; y < x - 1; y++) {
+    //inner loop is ascending - y = index, starts at first index
+    for (let y = 0; y < x; y++) {
       //   console.log(arrData[y], arrData[y + 1]);
       if (arrData[y] > arrData[y + 1]) {
         [arrData[y + 1], arrData[y]] = [arrData[y], arrData[y + 1]];
