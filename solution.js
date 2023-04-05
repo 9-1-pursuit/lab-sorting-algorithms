@@ -75,8 +75,18 @@ const catArtSortDesginedByA = () => {
 // sort catArt by price
 
 const catArtSortByPriceA = () => {
-  return catArt.sort()
+  return catArt.sort((a, b) => {
+    if (a.price < b.price) {
+      return -1;
+    }
+    if (a.price > b.price) {
+      return 1;
+    }
+    return 0;
+  });
+  
 
+  
 };
 
 // Create your own sort function
@@ -88,20 +98,19 @@ const catArtSortByPriceA = () => {
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
 const mySortFunction = (arr) => {
-   let noSwap;
-    for (let i = arr.length - 1 ; i > 0; i--) {
-      noSwap = true;
-      for (let j = 0; j < i - 1; j++) {
-     
-        if (arr[j] > arr[j + 1]) {
-          [arr[j+1], arr[j]]=[arr[j],arr[j+1]]
-          noSwap = false;
-        }
-      }
-  
-      if (noSwap) break;
-    }
-    return arr;
+   const sort = arr.sort((a , b) => {
+     if(typeof a === "number" && typeof b === "number"){
+       return Number(a) - Number(b)
+     }
+     if(a < b){
+       return - 1
+     }
+     else{
+       return 1 
+     }
+   })
+
+   return sort
 };
 
 module.exports = {
