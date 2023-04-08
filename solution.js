@@ -4,7 +4,7 @@ const { catArt, someNums, someProducts, someWords } = require("./data/data.js");
 const sortNumsA = (arr) => {
   return arr.sort((a, b) => {
     if(a > b) return 1
-    else if (a < b) return -1
+    else return -1
   })
 };
 
@@ -12,7 +12,7 @@ const sortNumsA = (arr) => {
 const sortNumsD = (arr) => {
   return arr.sort((a,b) => {
     if(a < b) return 1
-    else if (a > b) return -1
+    else return -1
   })
 };
 
@@ -33,7 +33,7 @@ const sortWordsD = (arr) => {
 const sortProductNamesA = (arr) => {
   return arr.sort((a, b) => {
     if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
-    else if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
+    else return 1
   })
 };
 
@@ -41,7 +41,7 @@ const sortProductNamesA = (arr) => {
 const sortProductPriceA = (arr) => {
   return arr.sort((a, b) => {
     if (a.price < b.price) return -1
-    else if (a.price > b.price) return 1
+    else return 1
   }) 
 };
 
@@ -60,7 +60,7 @@ const sortProducsPriceNameA = (arr) => {
     else if (a.price > b.price) return 1
 
     if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
-    else if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
+    else return 1
   }) 
 };
 
@@ -70,10 +70,28 @@ const catArtSortDesginedByA = (arr) => {
     if (a.designedBy.toLowerCase() < b.designedBy.toLowerCase()) return -1
     else if (a.designedBy.toLowerCase() > b.designedBy.toLowerCase()) return 1
   })
-};
+}
 
 // sort catArt by price
-const catArtSortByPriceA = (arr) => {};
+const catArtSortByPriceA = (arr) => {
+  return arr.sort((a, b) => {
+    let priceA
+    let priceB
+
+    if (isNaN(a.price) && a.price.includes('♇♇')){
+      priceA = Number(a.price.slice(2)) * 10
+    } else priceA = a.price
+
+    if (isNaN(b.price) && b.price.includes('♇♇')){
+      priceB = Number(b.price.slice(2)) * 10
+    } else priceB = b.price
+    
+    if (priceA < priceB) return -1
+    else return 1
+  }) 
+};
+
+console.log(catArtSortDesginedByA(catArt))
 
 // Create your own sort function
 // it should sort in ascending order
