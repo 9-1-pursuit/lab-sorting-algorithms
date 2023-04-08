@@ -2,7 +2,7 @@ const { catArt, someNums, someProducts, someWords } = require("./data/data.js");
 
 // sort numbers in ascending order
 const sortNumsA = (arr) => {
-  return arr.sort((a,b) => {
+  return arr.sort((a, b) => {
     if(a > b) return 1
     else if (a < b) return -1
   })
@@ -23,7 +23,7 @@ const sortWordsA = (arr) => {
 
 // sort words in descending order case insensitive
 const sortWordsD = (arr) => {
-  return arr.sort((a,b) => {
+  return arr.sort((a, b) => {
     if (a.toLowerCase() < b.toLowerCase()) return 1
     else if (a.toLowerCase() > b.toLowerCase()) return -1
   })
@@ -31,17 +31,27 @@ const sortWordsD = (arr) => {
 
 // sort products by name, ascending order case insensitive
 const sortProductNamesA = (arr) => {
-  return arr.sort((a,b) => {
+  return arr.sort((a, b) => {
     if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
     else if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
   })
 };
 
 // sort products by price, ascending order
-const sortProductPriceA = () => {};
+const sortProductPriceA = (arr) => {
+  return arr.sort((a, b) => {
+    if (a.price < b.price) return -1
+    else if (a.price > b.price) return 1
+  }) 
+};
 
 // sort products by price, descending order
-const sortProductPriceD = () => {};
+const sortProductPriceD = (arr) => {
+  return arr.sort((a, b) => {
+    if (a.price < b.price) return 1
+    else if (a.price > b.price) return -1
+  }) 
+};
 
 // sort products by price, then by name, ascending order
 const sortProducsPriceNameA = () => {};
