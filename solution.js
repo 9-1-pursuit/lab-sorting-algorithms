@@ -1,10 +1,20 @@
 const { catArt, someNums, someProducts, someWords } = require("./data/data.js");
 
 // sort numbers in ascending order
-const sortNumsA = () => {};
+const sortNumsA = (arr) => {
+  return arr.sort((a,b) => {
+    if(a > b) return 1
+    else if (a < b) return -1
+  })
+};
 
 // sort numbers in descending order
-const sortNumsD = () => {};
+const sortNumsD = (arr) => {
+  return arr.sort((a,b) => {
+    if(a < b) return 1
+    else if (a > b) return -1
+  })
+};
 
 // sort words in ascending order case sensitive
 const sortWordsA = () => {};
