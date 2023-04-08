@@ -23,16 +23,19 @@ const sortWordsA = (arr) => {
 
 // sort words in descending order case insensitive
 const sortWordsD = (arr) => {
-  // arr.forEach(el => el.toLowerCase())
   return arr.sort((a,b) => {
     if (a.toLowerCase() < b.toLowerCase()) return 1
     else if (a.toLowerCase() > b.toLowerCase()) return -1
-    console.log(arr)
   })
 };
 
 // sort products by name, ascending order case insensitive
-const sortProductNamesA = () => {};
+const sortProductNamesA = (arr) => {
+  return arr.sort((a,b) => {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
+    else if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
+  })
+};
 
 // sort products by price, ascending order
 const sortProductPriceA = () => {};
