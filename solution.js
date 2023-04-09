@@ -75,18 +75,25 @@ const catArtSortDesginedByA = () => {
 // sort catArt by price
 
 const catArtSortByPriceA = () => {
-  return catArt.sort((a, b) => {
-    if (a.price < b.price) {
-      return -1;
-    }
-    if (a.price > b.price) {
-      return 1;
-    }
-    return 0;
+  
+  const sort = catArt.sort((a, b) => {
+    const getPriceValue = (price) => {
+      if (typeof price === "string" && price.includes("♇♇")) {
+        return Number(price.slice(2)) * 10;
+      } else {
+        return Number(price);
+      }
+    };
+  
+    const price1 = getPriceValue(a.price);
+    const price2 = getPriceValue(b.price);
+  
+    return price1 - price2;
   });
   
-
+  return sort;
   
+
 };
 
 // Create your own sort function
