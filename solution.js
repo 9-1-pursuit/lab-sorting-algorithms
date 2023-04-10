@@ -52,53 +52,67 @@ const catArtSortDesginedByA = (catArt) => {
     a.designedBy.toLowerCase().localeCompare(b.designedBy.toLowerCase())
   );
 };
+
 // sort catArt by price
 const catArtSortByPriceA = (catArt) => {
-  return [...catArt].sort((a, b) => {
-    return catArt.map((p) => {
-        if (typeof p.price === "string" && p.price.includes("♇♇")) {
-          //* conversion here
-          const artPrice = Number(p.price.slice(2));
-          return artPrice * 10;
-        } else {
-          return p.price;
-        }
-      })
-    return a - b
+  return catArt.sort((a, b) => {
+    let aPrice;
+    let bPrice;
+    if (typeof a.price === "string" && a.price.includes("♇♇")) {
+      //* conversion here
+      aPrice = a.price.slice(2) * 10;
+    } else {
+      aPrice = Number(a.price);
+    }
+    if (typeof b.price === "string" && b.price.includes("♇♇")) {
+      //* conversion here
+      bPrice = b.price.slice(2) * 10;
+    } else {
+      bPrice = Number(b.price);
+    }
+    return aPrice - bPrice;
+    // ternary => 
   });
-   //!
-    // let aPrice = typeof a.price === "string" && a.price.includes("♇♇");
-    // if (aPrice) {
-    //   let pluto = Number(a.price.slice(2));
-    //   console.log(a.price, typeof pluto, pluto * 10);
-    // } else {
-    //   let cPrice = Number(a.price)
-    //   console.log("price", cPrice, typeof cPrice);
-    // }
-  // convert price to number
-  // return catArt.forEach((p) => {
-  //   if (typeof p.price === "string" && p.price.includes("♇♇")) {
-  //     //* conversion here
-  //     const artPrice = Number(p.price.slice(2));
-  //     return artPrice * 10;
-  //   } else {
-  //     return p.price;
-  //   }
-  // });
-  // // .sort((a,b)=>
-  // // a.price - b.price)
-  console.log(catArt);
 };
-console.log(catArtSortByPriceA(catArt));
+
 // Create your own sort function
-// it should sort in ascending order
-// it should work for numbers or words (case sensitive)
-// create your own sort algorithm
+// It should sort in ascending order
+// It should work for numbers or words (case sensitive)
+// Create your own sort algorithm
 // or try to implement bubble sort
-// or try to implement merge sort
+//! or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = () => {};
+const mySortFunction = (someNums) => {
+  //* someNums =  [10,9,8,7,6,5,4,3,2,1,0]
+// base case 
+if(someNums.length === 1) {return someNums
+}
+
+// divide length of nums array in half
+const median = Math.floor(someNums.length / 2) 
+// left side 
+const left = someNums.slice(0, median) // [10,9,8,7,6]
+//right side 
+const rigth =  someNums.slice(median) // [5,4,3,2,1,0]
+
+// recursively sort 
+const sortedLeft = mySortFunction(left)
+const sortedRigth = mySortFunction(rigth)
+
+return merge(sortedLeft,sortedRigth) //
+
+// Merge function 
+function merge(left, right) {
+
+
+
+  
+}
+
+
+
+};
 
 module.exports = {
   sortNumsA,
