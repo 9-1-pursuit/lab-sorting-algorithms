@@ -52,7 +52,6 @@ const catArtSortDesginedByA = (catArt) => {
     a.designedBy.toLowerCase().localeCompare(b.designedBy.toLowerCase())
   );
 };
-
 // sort catArt by price
 const catArtSortByPriceA = (catArt) => {
   return catArt.sort((a, b) => {
@@ -71,10 +70,8 @@ const catArtSortByPriceA = (catArt) => {
       bPrice = Number(b.price);
     }
     return aPrice - bPrice;
-    // ternary => 
-  });
+   });
 };
-
 // Create your own sort function
 // It should sort in ascending order
 // It should work for numbers or words (case sensitive)
@@ -83,35 +80,23 @@ const catArtSortByPriceA = (catArt) => {
 //! or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = (someNums) => {
-  //* someNums =  [10,9,8,7,6,5,4,3,2,1,0]
-// base case 
-if(someNums.length === 1) {return someNums
-}
-
-// divide length of nums array in half
-const median = Math.floor(someNums.length / 2) 
-// left side 
-const left = someNums.slice(0, median) // [10,9,8,7,6]
-//right side 
-const rigth =  someNums.slice(median) // [5,4,3,2,1,0]
-
-// recursively sort 
-const sortedLeft = mySortFunction(left)
-const sortedRigth = mySortFunction(rigth)
-
-return merge(sortedLeft,sortedRigth) //
-
-// Merge function 
-function merge(left, right) {
-
-
-
-  
-}
-
-
-
+const mySortFunction = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (typeof arr[j] === 'number' || typeof arr[j] === 'bigint') {
+        if (arr[j] > arr[j+1]) {
+          [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+        }
+      } else if (typeof arr[j] === 'string') {
+        if (arr[j].toLowerCase().localeCompare(arr[j+1].toLowerCase()) > 0) {
+          [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+        }
+      } else {
+        throw new Error('Invalid input type. Only numbers and strings are allowed.');
+      }
+    }
+  }
+  return arr;
 };
 
 module.exports = {
@@ -127,3 +112,55 @@ module.exports = {
   catArtSortByPriceA,
   mySortFunction,
 };
+//! Check for String and Nums => only works for nums ATM -__- 
+// const mySortFunction = (arr) => {
+//   //* someNums =  [10,9,8,7,6,5,4,3,2,1,0]
+// // base case 
+// if(arr.length === 1) {return arr
+// }
+// // divide length of nums array in half
+// const median = Math.floor(arr.length / 2) 
+// // left side 
+// const leftSide = arr.slice(0, median) // [10,9,8,7,6]
+// //right side 
+// const rigthSide =  arr.slice(median) // [5,4,3,2,1,0]
+// // recursively sort 
+// const sortedLeft = mySortFunction(leftSide)
+// const sortedRigth = mySortFunction(rigthSide)
+
+// return merge(sortedLeft,sortedRigth) //
+
+// // Merge function 
+// function merge(left, right) {
+
+// let finalMerge = [] // to comapre elements left and right, then add them to the finalMerge array
+// let leftIndex = 0 
+// let rightIndex = 0 
+
+// while(leftIndex < leftIndex.length && rightIndex < rightIndex.length){
+//   if(left[leftIndex] < right[rightIndex]){
+//     finalMerge.push(left[leftIndex])
+//    leftIndex++ // move to next index in the leftSide till end
+//   }
+//   else{
+// finalMerge.push(right[rightIndex])
+// rightIndex++ 
+//   }
+//   // console.log(finalMerge) // [empty] ?????
+//   // Add Remaining element in left to the final merge arr
+//   while(leftIndex < left.length){
+// finalMerge.push(left[leftIndex])
+// leftIndex++ 
+//   }
+//   // Add Remaining element in right to the final merge arr
+// while(rightIndex< right.length){
+//   finalMerge.push(right[rightIndex])
+//   rightIndex++
+// }
+// }
+// // console.log("Final", finalMerge.concat(left.slice(leftIndex)).concat(right.slice(rightIndex)))  //
+// const result = finalMerge.concat(left.slice(leftIndex)).concat(right.slice(rightIndex))
+// return result //
+
+// }
+// };
