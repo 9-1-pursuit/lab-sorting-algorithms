@@ -65,7 +65,21 @@ const catArtSortDesginedByA = (catArt) => {
 
 // sort catArt by price
 const catArtSortByPriceA = (catArt) => {
-  return catArt.sort((a, b) => {});
+  return catArt.sort((a, b) => {
+    let aPrice;
+    let bPrice;
+    if (typeof a.price === "string" && a.price.includes("♇♇")) {
+      aPrice = a.price.slice(2) * 10;
+    } else {
+      aPrice = Number(a.price);
+    }
+    if (typeof b.price === "string" && b.price.includes("♇♇")) {
+      bPrice = b.price.slice(2) * 10;
+    } else {
+      bPrice = Number(b.price);
+    }
+    return aPrice - bPrice;
+  });
 };
 
 // Create your own sort function
@@ -76,7 +90,23 @@ const catArtSortByPriceA = (catArt) => {
 // or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = () => {};
+const mySortFunction = (arr) => {
+  let swap;
+
+  for (let i = arr.length; i > 0; i--) {
+    swap = true;
+    for (let j = 0; j < i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+        swap = false;
+      }
+    }
+    if (swap) break;
+  }
+  return arr;
+};
+
+console.log(mySortFunction(someNums));
 
 module.exports = {
   sortNumsA,
