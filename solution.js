@@ -70,10 +70,10 @@ const catArtSortDesginedByA = () => {
 };
 
 // sort catArt by price
-const catArtSortByPriceA = (price) => {
+const catArtSortByPriceA = () => {
 
 
-  return price.sort((a, b) => {
+  const sort = catArt.sort((a, b) => {
     let price1=0
     let price2=0
     if (typeof a.price === 'string' && a.price.includes('♇♇')) {
@@ -90,7 +90,7 @@ const catArtSortByPriceA = (price) => {
     }
     return price1 - price2;
   });
-
+return sort
 };
 
 // Create your own sort function
