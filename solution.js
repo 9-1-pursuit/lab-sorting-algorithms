@@ -92,7 +92,24 @@ optimized version fails test asks why later.
 // or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = () => {};
+const mySortFunction = (arr, order = "asc") => {
+  const n = arr.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (
+        (order === "asc" && arr[j] > arr[j + 1]) ||
+        (order === "desc" && arr[j] < arr[j + 1])
+      ) {
+        const temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+
+  return arr;
+};
 
 module.exports = {
   sortNumsA,
