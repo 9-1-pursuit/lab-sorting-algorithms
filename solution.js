@@ -16,10 +16,15 @@ const sortWordsA = (someWords) => {
 };
 
 // sort words in descending order case insensitive
-const sortWordsD = () => {};
+const sortWordsD = (someWords) => {
+  return someWords.sort((a, b) => b.localeCompare(a, undefined, {determinant: "base"}))
+  //This is not cute but it is O(n log n) so ignore. 
+};
 
 // sort products by name, ascending order case insensitive
-const sortProductNamesA = () => {};
+const sortProductNamesA = (someProducts) => {
+   return someProducts.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+};
 
 // sort products by price, ascending order
 const sortProductPriceA = () => {};
