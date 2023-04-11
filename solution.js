@@ -56,7 +56,33 @@ const catArtSortDesginedByA = (catArt) => {
 };
 
 // sort catArt by price
-const catArtSortByPriceA = () => {};
+const catArtSortByPriceA = (arr) => {
+  return arr.sort(
+    (a, b) =>
+      (a.price.toString().includes("♇♇")
+        ? +a.price.replace("♇♇", "") * 10
+        : a.price) -
+      (b.price.toString().includes("♇♇")
+        ? +b.price.replace("♇♇", "") * 10
+        : b.price)
+  );
+};
+
+/*
+const catArtSortByPriceA = (arr) => { // Define function catArtSortByPriceA that takes an array as an argument
+  return arr.sort( // Call the sort method on the array, which will sort it in place
+    (a, b) => // The sort method takes a comparison function that compares two elements of the array
+      (a.price.toString().includes("♇♇") // If the price of the first element includes "♇♇"
+        ? +a.price.replace("♇♇", "") * 10 // Convert the price to a number and multiply by 10
+        : a.price) // Otherwise, use the price as is
+      - // Subtract the second element's price from the first element's price
+      (b.price.toString().includes("♇♇") // Repeat the above steps for the second element
+        ? +b.price.replace("♇♇", "") * 10
+        : b.price)
+  );
+};
+optimized version fails test asks why later. 
+*/ 
 
 // Create your own sort function
 // it should sort in ascending order
