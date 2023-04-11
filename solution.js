@@ -37,10 +37,22 @@ const sortProductPriceD = (someProducts) => {
 };
 
 // sort products by price, then by name, ascending order
-const sortProducsPriceNameA = () => {};
+const sortProducsPriceNameA = (someProducts) => {
+  //its going to be ugly but let me land lol
+  return someProducts.sort((a, b) => {
+    // If the price of product 'a' is equal to the price of product 'b'
+    if (a.price === b.price) {
+      // Compare the 'name' of the two products, and return the result
+      return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+    }
+    // Otherwise, sort the products by price in ascending order
+    return a.price - b.price;
+  });
+};
 
 // sort catArt by designed by
-const catArtSortDesginedByA = () => {};
+const catArtSortDesginedByA = (catArt) => {
+};
 
 // sort catArt by price
 const catArtSortByPriceA = () => {};
