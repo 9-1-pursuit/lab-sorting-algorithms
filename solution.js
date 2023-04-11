@@ -52,6 +52,7 @@ const sortProducsPriceNameA = (someProducts) => {
 
 // sort catArt by designed by
 const catArtSortDesginedByA = (catArt) => {
+  return catArt.sort((a, b) => a.designedBy.localeCompare(b.designedBy, undefined, {sensitivity: "base"}));
 };
 
 // sort catArt by price
